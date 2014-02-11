@@ -1,29 +1,19 @@
-/*
- * Copyright (c) 2011-2013 Kevin Lange.  All rights reserved.
- *
+/*	Copyright (c) 2011-2013 Kevin Lange.  All rights reserved.
  * Developed by:            Kevin Lange
  *                          http://github.com/klange/nyancat
  *                          http://nyancat.dakko.us
- *
  * 40-column support by:    Peter Hazenberg
  *                          http://github.com/Peetz0r/nyancat
  *                          http://peter.haas-en-berg.nl
- *
  * Build tools unified by:  Aaron Peschel
  *                          https://github.com/apeschel
- *
  * For a complete listing of contributers, please see the git commit history.
- *
  * This is a simple telnet server / standalone application which renders the
  * classic Nyan Cat (or "poptart cat") to your terminal.
- *
  * It makes use of various ANSI escape sequences to render color, or in the case
  * of a VT220, simply dumps text to the screen.
- *
  * For more information, please see:
- *
  *     http://nyancat.dakko.us
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal with the Software without restriction, including without limitation the
@@ -39,15 +29,13 @@
  *      Lange, nor the names of its contributors may be used to endorse
  *      or promote products derived from this Software without specific prior
  *      written permission.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
  * CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- * WITH THE SOFTWARE.
- */
+ * WITH THE SOFTWARE.	*/
 
 #include <ctype.h>
 #include <stdio.h>
@@ -70,74 +58,34 @@
 #undef ECHO
 #endif
 
-/*
- * telnet.h contains some #defines for the various
- * commands, escape characters, and modes for telnet.
- * (it surprises some people that telnet is, really,
- *  a protocol, and not just raw text transmission)
- */
+/*	telnet.h contains some #defines for the various commands, escape characters, and modes for telnet.
+ * (it surprises some people that telnet is, really, a protocol, and not just raw text transmission)	*/
 #include "telnet.h"
-
-/*
- * The animation frames are stored separately in
- * this header so they don't clutter the core source
- */
+/*	The animation frames are stored separately in this header so they don't clutter the core source	*/
 #include "animation.c"
 
-/*
- * Color palette to use for final output
- * Specifically, this should be either control sequences
- * or raw characters (ie, for vt220 mode)
- */
+/*	Color palette to use for final output Specifically, this should be either control sequences or raw characters (ie, for vt220 mode)	*/
 char * colors[256] = {NULL};
 
-/*
- * For most modes, we output spaces, but for some
- * we will use block characters (or even nothing)
- */
+/*	For most modes, we output spaces, but for some we will use block characters (or even nothing)	*/
 char * output = "  ";
 
-/*
- * Are we currently in telnet mode?
- */
+mainNOT(
+/* Are we currently in telnet mode?	*/
 int telnet = 0;
-
-/*
- * Whether or not to show the counter
- */
+/*	Whether or not to show the counter	*/
 int show_counter = 1;
-
-/*
- * Number of frames to show before quitting
- * or 0 to repeat forever (default)
- */
+/*	Number of frames to show before quitting or 0 to repeat forever (default)	*/
 int frame_count = 0;
-
-/*
- * Clear the screen between frames (as opposed to reseting
- * the cursor position)
- */
+/*	Clear the screen between frames (as opposed to reseting the cursor position)	*/
 int clear_screen = 1;
-
-/*
- * Force-set the terminal title.
- */
+/*	Force-set the terminal title.	*/
 int set_title = 1;
-
-/*
- * Environment to use for setjmp/longjmp
- * when breaking out of options handler
- */
+/*	Environment to use for setjmp/longjmp when breaking out of options handler	*/
 jmp_buf environment;
 
-
-/*
- * I refuse to include libm to keep this low
- * on external dependencies.
- *
- * Count the number of digits in a number for
- * use with string output.
- */
+/*	I refuse to include libm to keep this low on external dependencies.
+		Count the number of digits in a number for use with string output.	*/
 int digits(int val) {
 	int d = 1, c;
 	if (val >= 0) for (c = 10; c <= val; c *= 10) d++;
@@ -145,61 +93,25 @@ int digits(int val) {
 	return (c < 0) ? ++d : d;
 }
 
-/*
- * These values crop the animation, as we have a full 64x64 stored,
- * but we only want to display 40x24 (double width).
- */
-int min_row = 20;
-int max_row = 43;
-int min_col = 10;
-int max_col = 50;
+/*	These values crop the animation, as we have a full 64x64 stored, but we only want to display 40x24 (double width).	*/
+int min_row = 20, max_row = 43, min_col = 10, max_col = 50;
 
-/*
- * Print escape sequences to return cursor to visible mode
- * and exit the application.
- */
+/*	Print escape sequences to return cursor to visible mode and exit the application.	*/
 void finish() {
-	if (clear_screen) {
-		printf("\033[?25h\033[0m\033[H\033[2J");
-	} else {
-		printf("\033[0m\n");
-	}
-	exit(0);
+	clear_screen ? printf("\033[?25h\033[0m\033[H\033[2J") : printf("\033[0m\n");	exit(0);
 }
+/*	In the standalone mode, we want to handle an interrupt signal (^C) so that we can restore the cursor and clear the terminal.	*/
+void SIGINT_handler(int sig){ finish(); }
 
-/*
- * In the standalone mode, we want to handle an interrupt signal
- * (^C) so that we can restore the cursor and clear the terminal.
- */
-void SIGINT_handler(int sig){
-	finish();
-}
+/*	Handle the alarm which breaks us off of options
+ * handling if we didn't receive a terminal	*/
+void SIGALRM_handler(int sig) {	alarm(0); 	longjmp(environment, 1);	/* Unreachable */ }
+/*	Handle the loss of stdout, as would be the case when in telnet mode and the client disconnects	*/
+void SIGPIPE_handler(int sig) {	finish(); }
 
-/*
- * Handle the alarm which breaks us off of options
- * handling if we didn't receive a terminal
- */
-void SIGALRM_handler(int sig) {
-	alarm(0);
-	longjmp(environment, 1);
-	/* Unreachable */
-}
-
-/*
- * Handle the loss of stdout, as would be the case when
- * in telnet mode and the client disconnects
- */
-void SIGPIPE_handler(int sig) {
-	finish();
-}
-
-/*
- * Telnet requires us to send a specific sequence
- * for a line break (\r\000\n), so let's make it happy.
- */
+/*	Telnet requires us to send a specific sequence for a line break (\r\000\n), so let's make it happy.	*/
 void newline(int n) {
-	int i = 0;
-	for (i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) {
 		/* We will send `n` linefeeds to the client */
 		if (telnet) {
 			/* Send the telnet newline sequence */
@@ -213,24 +125,18 @@ void newline(int n) {
 	}
 }
 
-/*
- * These are the options we want to use as
- * a telnet server. These are set in set_options()
- */
+/*	These are the options we want to use as
+ * a telnet server. These are set in set_options()	*/
 unsigned char telnet_options[256] = { 0 };
 unsigned char telnet_willack[256] = { 0 };
 
-/*
- * These are the values we have set or
+/*	These are the values we have set or
  * agreed to during our handshake.
- * These are set in send_command(...)
- */
+ * These are set in send_command(...)	*/
 unsigned char telnet_do_set[256]  = { 0 };
 unsigned char telnet_will_set[256]= { 0 };
 
-/*
- * Set the default options for the telnet server.
- */
+/*	Set the default options for the telnet server.	*/
 void set_options() {
 	/* We will not echo input */
 	telnet_options[ECHO] = WONT;
@@ -253,10 +159,8 @@ void set_options() {
 	telnet_willack[NEW_ENVIRON] = DO;
 }
 
-/*
- * Send a command (cmd) to the telnet client
- * Also does special handling for DO/DONT/WILL/WONT
- */
+/*	Send a command (cmd) to the telnet client
+ * Also does special handling for DO/DONT/WILL/WONT	*/
 void send_command(int cmd, int opt) {
 	/* Send a command to the telnet client */
 	if (cmd == DO || cmd == DONT) {
@@ -281,9 +185,7 @@ void send_command(int cmd, int opt) {
 	}
 }
 
-/*
- * Print the usage / help text describing options
- */
+/*	Print the usage / help text describing options	*/
 void usage(char * argv[]) {
 	printf(
 			"Terminal Nyancat\n"
@@ -500,7 +402,7 @@ int main(int argc, char ** argv) {
 							sb_len  = 0;
 							memset(sb, 0, sizeof(sb));
 							break;
-						case IAC: 
+						case IAC:
 							/* IAC IAC? That's probably not right. */
 							done = 2;
 							break;
@@ -794,45 +696,28 @@ int main(int argc, char ** argv) {
 			newline(1);
 		}
 		if (show_counter) {
-			/* Get the current time for the "You have nyaned..." string */
-			time(&current);
+			time(&current);  // Get the current time for the "You have nyaned..." string
 			double diff = difftime(current, start);
-			/* Now count the length of the time difference so we can center */
-			int nLen = digits((int)diff);
+			int nLen = digits((int)diff); 	// Now count the length of the time difference so we can center
 			int anim_width = terminal_width == 80 ? (max_col - min_col) * 2 : (max_col - min_col);
-			/*
-			 * 29 = the length of the rest of the string;
-			 * XXX: Replace this was actually checking the written bytes from a
-			 * call to sprintf or something
+			/* 	29 = the length of the rest of the string;
+			 		XXX: Replace this was actually checking the written bytes from a call to sprintf or something
 			 */
 			int width = (anim_width - 29 - nLen) / 2;
-			/* Spit out some spaces so that we're actually centered */
-			while (width > 0) {
-				printf(" ");
-				width--;
-			}
-			/* You have nyaned for [n] seconds!
-			 * The \033[J ensures that the rest of the line has the dark blue
-			 * background, and the \033[1;37m ensures that our text is bright white.
-			 * The \033[0m prevents the Apple ][ from flipping everything, but
-			 * makes the whole nyancat less bright on the vt220
-			 */
+			while (width > 0) printf(" "), width--;  			/* Spit out some spaces so that we're actually centered */
+
+			/* 	The \033[J ensures that the rest of the line has the dark blue background, and the \033[1;37m ensures
+			 		that our text is bright white. The \033[0m prevents the Apple ][ from flipping everything,
+					but makes the whole nyancat less bright on the vt220 */
+
 			printf("\033[1;37mYou have nyaned for %0.0f seconds!\033[J\033[0m", diff);
 		}
-		/* Reset the last color so that the escape sequences rewrite */
-		last = 0;
-		/* Update frame count */
-		++f;
-		if (frame_count != 0 && f == frame_count) {
-			finish();
-		}
+		last = 0;	// Reset the last color so that the escape sequences rewrite
+		++f; 			// Update frame count
+		if (frame_count != 0 && f == frame_count) finish();
 		++i;
-		if (!frames[i]) {
-			/* Loop animation */
-			i = 0;
-		}
-		/* Wait */
-		usleep(90000);
+		if (!frames[i]) i = 0; 	// Loop animation
+		usleep(90000); 					// Wait
 	}
 	return 0;
 }
