@@ -1,8 +1,4 @@
-/*
- * Pop Tart Cat animation frames
- */
-#ifndef ANIMATION_H
-#define ANIMATION_H
+/* Pop Tart Cat animation frames */
 
 char * frame0[] = {
 ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.,,,,,,,,,,,,,,,,,,,,,,,,,",
@@ -814,5 +810,3 @@ char ** frames[] = {
 
 #define FRAME_WIDTH  64
 #define FRAME_HEIGHT 64
-
-#endif
