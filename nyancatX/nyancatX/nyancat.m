@@ -2,14 +2,6 @@
 #import "nyancat.h"
 @import Cocoa;
 
-int main(int argc, char *argv[], char**argp ){	@autoreleasepool {
-
-    [NSApplication sharedApplication];
-    NyanCat *x    = NyanCat.new;
-    [NSApp run];
-    
-}	return EXIT_SUCCESS;	}
-
 
 
 //		These values crop the animation, as we have a full 64x64 stored, but we only want to display 40x24 (double width).	
@@ -567,3 +559,13 @@ static char __unused term[1024] = {'a', 'n', 's', 'i', 0}; //	 The default termi
   //  sb_len = 0;
   //  show_intro = 0;
   //  skip_intro = 0; //	 Whether or not to show the MOTD intro 
+
+int main(int argc, char *argv[], char**argp ){	@autoreleasepool {
+
+    [NSApplication sharedApplication];
+    NyanCat *x    = NyanCat.new;
+    [x play];
+    [NSApp run];
+    
+}	return EXIT_SUCCESS;	}
+

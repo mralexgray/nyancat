@@ -22,7 +22,9 @@
  (it surprises some people that telnet is, really, a protocol, and not just raw text transmission)		*/
 #include "telnet.h"
 /*	The animation frames are stored separately in 	this header so they don't clutter the core source		*/
-#include "animation.c"
+#include "animation.h"
+
+#import "jp2a.h"
 
 char  * colors[256] = {NULL}; /*	Color palette to use for final output Specifically, this should be either control sequences or raw characters (ie, for vt220 mode)		*/
 char       * output = "  ";        
@@ -125,18 +127,18 @@ void usage(char * argv[]) {
          argv[0]);
 }
 
-int main(int argc, char * argv[]) { @autoreleasepool {             
-  
-	char term[1024] = {'a','n','s','i', 0};	int k, ttype, index, c;                           /* The default terminal is ANSI */
-  
-  uint32_t option = 0, done = 0, sb_mode = 0, __unused do_echo = 0;
-  
-	short sb_len = 0;	unsigned char sb[1024] = {0};                                           /* Various pieces for the telnet communication */
-  
-  char show_intro = 1, skip_intro = 0;                                                      /* Whether or not to show the MOTD intro */
-  
-	static struct option long_opts[] = {                                                      /* Long option names */
-            
+char term[1024] = {'a','n','s','i', 0};	int k, ttype, c;                           /* The default terminal is ANSI */
+
+uint32_t option = 0, done = 0, sb_mode = 0, __unused do_echo = 0;
+
+short sb_len = 0;	unsigned char sb[1024] = {0};                                           /* Various pieces for the telnet communication */
+
+char show_intro = 1, skip_intro = 0;                                      /* Whether or not to show the MOTD intro */
+
+void ParseArgs(int argc, char * argv[]) { int index;
+
+  static struct option long_opts[] = {                                    /* Long option names */
+           
 		{"help",       no_argument,       0, 'h'},  {"telnet",     no_argument,       0, 't'},
 		{"intro",      no_argument,       0, 'i'},	{"skip-intro", no_argument,       0, 'I'},
 		{"no-counter", no_argument,       0, 'n'},	{"no-title",   no_argument,       0, 's'},
@@ -144,7 +146,8 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 		{"min-rows",   required_argument, 0, 'r'},	{"max-rows",   required_argument, 0, 'R'},
 		{"min-cols",   required_argument, 0, 'c'},	{"max-cols",   required_argument, 0, 'C'},
 		{"width",      required_argument, 0, 'W'},	{"height",     required_argument, 0, 'H'},	{0,0,0,0}	};
-  
+
+
 	while ((c = getopt_long(argc,argv,"eshiItnf:r:R:c:C:W:H:",long_opts, &index)) != -1) {    /* Process arguments */
 		c = c ?: !long_opts[index].flag ? long_opts[index].val : c;
 		switch (c) {
@@ -197,8 +200,7 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 				break;
 		}
 	}
-  
-	if (telnet) {   /* Telnet mode */
+  	if (telnet) {   /* Telnet mode */
 		show_intro = (skip_intro == 0) ? 1 : 0;   		/* show_intro is implied unless skip_intro was set */
     set_options();  		/* Set the default options */
     for (option = 0; option < 256; option++) {          if (!telnet_options[option]) continue; 		/* Let the client know what we're using */
@@ -291,12 +293,17 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 		char * nterm = getenv("TERM");	if (nterm) strcpy(term, nterm); 		/* We are running standalone, retrieve the terminal type from the environment. */
 		struct winsize w;	ioctl(0, TIOCGWINSZ, &w);	terminal_width = w.ws_col; terminal_height = w.ws_row; 		/* Also get the number of columns */
 	}
+}
+
+int main(int argc, char * argv[]) { @autoreleasepool {             
+    
+  ParseArgs(argc, argv);
   
   //	for (k = 0; k < strlen(term); ++k) term[k] = tolower(term[k]); 	/* Convert the entire terminal string to lower case */
 	ttype = 1;
 	int always_escape = 0;                            /* Used for text mode */
-  signal(SIGINT,   SIGINT_handler);    /* Accept ^C -> restore cursor */
-  signal(SIGPIPE,  SIGPIPE_handler);  	/* Handle loss of stdout */
+               signal(SIGINT,   SIGINT_handler);    /* Accept ^C -> restore cursor */
+               signal(SIGPIPE,  SIGPIPE_handler);  	/* Handle loss of stdout */
 	if (!telnet) signal(SIGWINCH, SIGWINCH_handler); 	/* Handle window changes */
   
   colors[',']  = "\033[48;5;17m";  /* Blue background */
@@ -314,10 +321,16 @@ int main(int argc, char * argv[]) { @autoreleasepool {
   colors['*']  = "\033[48;5;240m"; /* Gray cat face */
   colors['%']  = "\033[48;5;175m"; /* Pink cheeks */
   
-	if (min_col == max_col) {	min_col = (FRAME_WIDTH - terminal_width/2) / 2;
+	if (min_col == max_col) 
+  {	
+    min_col = (FRAME_WIDTH - terminal_width/2) / 2;
     max_col = (FRAME_WIDTH + terminal_width/2) / 2;
-    using_automatic_width = 1;                         }
-	if (min_row == max_row) { min_row = (FRAME_HEIGHT - (terminal_height-1)) / 2;
+    using_automatic_width = 1;                         
+  }
+	
+  if (min_row == max_row) { 
+  
+    min_row = (FRAME_HEIGHT - (terminal_height-1)) / 2;
     max_row = (FRAME_HEIGHT + (terminal_height-1)) / 2;
     using_automatic_height = 1;                         }
   
@@ -327,14 +340,26 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 		printf("\033]2;Nyanyanyanyanyanyanya...\007");
 	}
   
-  printf(clear_screen?"\033[H\033[2J\033[?25l": "\033[s"); 		/* Clear the screen */
-  
+//  printf(clear_screen?"\033[H\033[2J\033[?25l": "\033[s"); 		/* Clear the screen */
+
+  int countdown_clock = 5; 
+//   for (k = 0; k < countdown_clock; ++k) {
+//	printf("\033[%s", clear_screen ? "H" : "u");        /* Reset cursor */
+//  printf("%s",runCommand(@"jp2a /Volumes/2T/ServiceData/git/Programming-iOS-Book-Examples/ch19p553pageController/p476pageController/moe.jpg").UTF8String);
+  JP2A *new = [JP2A instanceWithPath:@"jp2a /Volumes/2T/ServiceData/git/Programming-iOS-Book-Examples/ch19p553pageController/p476pageController/moe.jpg"];
+  printf("%s",new.outString.UTF8String);
+//  jp2a(@"/Volumes/2T/ServiceData/git/Programming-iOS-Book-Examples/ch19p553pageController/p476pageController/moe.jpg");
+//      countdown_clock-k;
+	sleep(3);    
+//  }
+
+  printf(clear_screen?"\033[H\033[2J\033[?25l": "\033[s"); 		/* Clear the screen */  
 	if (show_intro) {           /* Display the MOTD */
-		int countdown_clock = 5;  for (k = 0; k < countdown_clock; ++k) {
+		countdown_clock = 5;  for (k = 0; k < countdown_clock; ++k) {
 			newline(3);
-			printf("                             \033[1mNyancat Telnet Server\033[0m");
+			printf("\033[1mNyancat Telnet Server\033[0m");
 			newline(2);
-			printf("                   written and run by \033[1;32mKevin Lange\033[1;34m @kevinlange\033[0m");
+			printf("  written and run by \033[1;32mKevin Lange\033[1;34m @kevinlange\033[0m");
 			newline(2);
 			printf("        If things don't look right, try:");
 			newline(1);
@@ -352,7 +377,7 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 			newline(1);
 			printf("                \033[1;31m^]quit\033[0m to exit");
 			newline(2);
-			printf("        Starting in %d...                \n", countdown_clock-k);
+			printf("   Starting in %d...                \n", countdown_clock-k);
       
 			fflush(stdout);
 			usleep(400000);

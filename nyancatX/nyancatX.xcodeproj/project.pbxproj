@@ -10,8 +10,14 @@
 		7B18058118F4AE8800488684 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B18058018F4AE8800488684 /* Foundation.framework */; };
 		7B18058418F4AE8800488684 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B18058318F4AE8800488684 /* main.m */; };
 		7B18058818F4AE8800488684 /* curryQtaire.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7B18058718F4AE8800488684 /* curryQtaire.1 */; };
-		7B1891B218A9C60D00E8A015 /* nyancat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891AF18A9C60D00E8A015 /* nyancat.m */; };
-		7B1891B618A9C87F00E8A015 /* TelnetServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891B518A9C87F00E8A015 /* TelnetServer.m */; };
+		7BA11A391918D29400BF7D2C /* TelnetServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891B518A9C87F00E8A015 /* TelnetServer.m */; };
+		7BA11A3A1918D29C00BF7D2C /* nyancat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891AF18A9C60D00E8A015 /* nyancat.m */; };
+		7BA11A3C1918D2EB00BF7D2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B18058018F4AE8800488684 /* Foundation.framework */; };
+		7BB4F6BE18F576A2003F88E9 /* options.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF507918F5718F006271B5 /* options.m */; };
+		7BB4F6BF18F5771E003F88E9 /* html.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF507418F5718F006271B5 /* html.m */; };
+		7BB4F6C018F57766003F88E9 /* jp2a.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF507618F5718F006271B5 /* jp2a.m */; };
+		7BFF50AD18F571F2006271B5 /* image.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF507518F5718F006271B5 /* image.m */; };
+		7BFF50AE18F57215006271B5 /* term.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFF507A18F5718F006271B5 /* term.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,14 +40,85 @@
 		7B18058618F4AE8800488684 /* curryQtaire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "curryQtaire-Prefix.pch"; sourceTree = "<group>"; };
 		7B18058718F4AE8800488684 /* curryQtaire.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = curryQtaire.1; sourceTree = "<group>"; };
 		7B18919D18A9C5EA00E8A015 /* nyancat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = nyancat; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B1891A618A9C5EA00E8A015 /* nyancat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nyancat-Prefix.pch"; path = "nyancat/nyancat-Prefix.pch"; sourceTree = "<group>"; };
+		7B1891A618A9C5EA00E8A015 /* nyancat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nyancat-Prefix.pch"; path = "nyancatX/nyancat-Prefix.pch"; sourceTree = "<group>"; };
 		7B1891AE18A9C60D00E8A015 /* telnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = telnet.h; path = ../src/telnet.h; sourceTree = "<group>"; };
-		7B1891AF18A9C60D00E8A015 /* nyancat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = nyancat.m; path = ../src/nyancat.m; sourceTree = "<group>"; };
-		7B1891B018A9C60D00E8A015 /* nyancat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nyancat.h; path = ../src/nyancat.h; sourceTree = "<group>"; };
-		7B1891B118A9C60D00E8A015 /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = animation.h; path = ../src/animation.h; sourceTree = "<group>"; };
-		7B1891B418A9C87F00E8A015 /* TelnetServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TelnetServer.h; path = nyancat/TelnetServer.h; sourceTree = "<group>"; };
-		7B1891B518A9C87F00E8A015 /* TelnetServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TelnetServer.m; path = nyancat/TelnetServer.m; sourceTree = "<group>"; };
-		7BFF505A18F4F8C7006271B5 /* animation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = animation.c; path = curryQtaire/animation.c; sourceTree = "<group>"; };
+		7B1891AF18A9C60D00E8A015 /* nyancat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = nyancat.m; path = nyancatX/nyancat.m; sourceTree = "<group>"; };
+		7B1891B018A9C60D00E8A015 /* nyancat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nyancat.h; path = nyancatX/nyancat.h; sourceTree = "<group>"; };
+		7B1891B118A9C60D00E8A015 /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = animation.h; path = curryQtaire/animation.h; sourceTree = "<group>"; };
+		7B1891B418A9C87F00E8A015 /* TelnetServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TelnetServer.h; path = nyancatX/TelnetServer.h; sourceTree = "<group>"; };
+		7B1891B518A9C87F00E8A015 /* TelnetServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TelnetServer.m; path = nyancatX/TelnetServer.m; sourceTree = "<group>"; };
+		7BFF505F18F5718F006271B5 /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
+		7BFF506018F5718F006271B5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		7BFF506118F5718F006271B5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		7BFF506518F5718F006271B5 /* jp2a.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jp2a.h; sourceTree = "<group>"; };
+		7BFF506618F5718F006271B5 /* options.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = options.h; sourceTree = "<group>"; };
+		7BFF506718F5718F006271B5 /* INSTALL */ = {isa = PBXFileReference; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
+		7BFF506818F5718F006271B5 /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-sh"; sourceTree = "<group>"; };
+		7BFF506918F5718F006271B5 /* LICENSES */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSES; sourceTree = "<group>"; };
+		7BFF506A18F5718F006271B5 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		7BFF506B18F5718F006271B5 /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		7BFF506D18F5718F006271B5 /* jp2a.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = jp2a.1; sourceTree = "<group>"; };
+		7BFF506E18F5718F006271B5 /* jp2a.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = jp2a.html; sourceTree = "<group>"; };
+		7BFF506F18F5718F006271B5 /* missing */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = missing; sourceTree = "<group>"; };
+		7BFF507018F5718F006271B5 /* NEWS */ = {isa = PBXFileReference; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		7BFF507118F5718F006271B5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		7BFF507318F5718F006271B5 /* curl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = curl.m; sourceTree = "<group>"; };
+		7BFF507418F5718F006271B5 /* html.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = html.m; sourceTree = "<group>"; };
+		7BFF507518F5718F006271B5 /* image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = image.m; sourceTree = "<group>"; };
+		7BFF507618F5718F006271B5 /* jp2a.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jp2a.m; sourceTree = "<group>"; };
+		7BFF507718F5718F006271B5 /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		7BFF507818F5718F006271B5 /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		7BFF507918F5718F006271B5 /* options.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = options.m; sourceTree = "<group>"; };
+		7BFF507A18F5718F006271B5 /* term.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = term.m; sourceTree = "<group>"; };
+		7BFF507C18F5718F006271B5 /* 10h.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 10h.txt; sourceTree = "<group>"; };
+		7BFF507D18F5718F006271B5 /* 110x30-i-b.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "110x30-i-b.txt"; sourceTree = "<group>"; };
+		7BFF507E18F5718F006271B5 /* 160x49.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 160x49.txt; sourceTree = "<group>"; };
+		7BFF507F18F5718F006271B5 /* 1x1-inv.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "1x1-inv.txt"; sourceTree = "<group>"; };
+		7BFF508018F5718F006271B5 /* 2xnormal-b.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "2xnormal-b.txt"; sourceTree = "<group>"; };
+		7BFF508118F5718F006271B5 /* 40x40.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 40x40.txt; sourceTree = "<group>"; };
+		7BFF508218F5718F006271B5 /* dalsnuten-256-light.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "dalsnuten-256-light.html"; sourceTree = "<group>"; };
+		7BFF508318F5718F006271B5 /* dalsnuten-256.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "dalsnuten-256.html"; sourceTree = "<group>"; };
+		7BFF508418F5718F006271B5 /* dalsnuten-640x480-gray-low.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dalsnuten-640x480-gray-low.jpg"; sourceTree = "<group>"; };
+		7BFF508518F5718F006271B5 /* dalsnuten-640x480-gray-low.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-640x480-gray-low.txt"; sourceTree = "<group>"; };
+		7BFF508618F5718F006271B5 /* dalsnuten-640x480-rgb-low.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-640x480-rgb-low.txt"; sourceTree = "<group>"; };
+		7BFF508718F5718F006271B5 /* dalsnuten-80x49-inv.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-80x49-inv.txt"; sourceTree = "<group>"; };
+		7BFF508818F5718F006271B5 /* dalsnuten-color.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "dalsnuten-color.html"; sourceTree = "<group>"; };
+		7BFF508918F5718F006271B5 /* dalsnuten-color.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-color.txt"; sourceTree = "<group>"; };
+		7BFF508A18F5718F006271B5 /* dalsnuten-invert.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-invert.txt"; sourceTree = "<group>"; };
+		7BFF508B18F5718F006271B5 /* dalsnuten-jp2a-2000x2000-md5.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-jp2a-2000x2000-md5.txt"; sourceTree = "<group>"; };
+		7BFF508C18F5718F006271B5 /* dalsnuten-normal.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dalsnuten-normal.txt"; sourceTree = "<group>"; };
+		7BFF508D18F5718F006271B5 /* flip-xy-invert.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "flip-xy-invert.txt"; sourceTree = "<group>"; };
+		7BFF508E18F5718F006271B5 /* grind-2grayscale-fill.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-2grayscale-fill.html"; sourceTree = "<group>"; };
+		7BFF508F18F5718F006271B5 /* grind-2grayscale-fill.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-2grayscale-fill.txt"; sourceTree = "<group>"; };
+		7BFF509018F5718F006271B5 /* grind-2grayscale.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-2grayscale.html"; sourceTree = "<group>"; };
+		7BFF509118F5718F006271B5 /* grind-blue.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-blue.txt"; sourceTree = "<group>"; };
+		7BFF509218F5718F006271B5 /* grind-color-dark-fill.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-color-dark-fill.html"; sourceTree = "<group>"; };
+		7BFF509318F5718F006271B5 /* grind-color-dark.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-color-dark.html"; sourceTree = "<group>"; };
+		7BFF509418F5718F006271B5 /* grind-color.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-color.html"; sourceTree = "<group>"; };
+		7BFF509518F5718F006271B5 /* grind-color.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-color.txt"; sourceTree = "<group>"; };
+		7BFF509618F5718F006271B5 /* grind-fill.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-fill.txt"; sourceTree = "<group>"; };
+		7BFF509718F5718F006271B5 /* grind-flipx.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-flipx.html"; sourceTree = "<group>"; };
+		7BFF509818F5718F006271B5 /* grind-flipxy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-flipxy.html"; sourceTree = "<group>"; };
+		7BFF509918F5718F006271B5 /* grind-flipy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-flipy.html"; sourceTree = "<group>"; };
+		7BFF509A18F5718F006271B5 /* grind-green.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-green.txt"; sourceTree = "<group>"; };
+		7BFF509B18F5718F006271B5 /* grind-nobold.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "grind-nobold.html"; sourceTree = "<group>"; };
+		7BFF509C18F5718F006271B5 /* grind-red.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "grind-red.txt"; sourceTree = "<group>"; };
+		7BFF509D18F5718F006271B5 /* grind.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grind.jpg; sourceTree = "<group>"; };
+		7BFF509E18F5718F006271B5 /* grind.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = grind.txt; sourceTree = "<group>"; };
+		7BFF509F18F5718F006271B5 /* html-raw.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "html-raw.txt"; sourceTree = "<group>"; };
+		7BFF50A018F5718F006271B5 /* html-title.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "html-title.txt"; sourceTree = "<group>"; };
+		7BFF50A118F5718F006271B5 /* jp2a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jp2a.jpg; sourceTree = "<group>"; };
+		7BFF50A218F5718F006271B5 /* logo-30.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "logo-30.txt"; sourceTree = "<group>"; };
+		7BFF50A318F5718F006271B5 /* logo-40x25-gray.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo-40x25-gray.jpg"; sourceTree = "<group>"; };
+		7BFF50A418F5718F006271B5 /* logo.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = logo.html; sourceTree = "<group>"; };
+		7BFF50A518F5718F006271B5 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7BFF50A618F5718F006271B5 /* normal-b.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "normal-b.txt"; sourceTree = "<group>"; };
+		7BFF50A718F5718F006271B5 /* normal-clear.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "normal-clear.txt"; sourceTree = "<group>"; };
+		7BFF50A818F5718F006271B5 /* normal-curl.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "normal-curl.txt"; sourceTree = "<group>"; };
+		7BFF50A918F5718F006271B5 /* normal-verbose.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "normal-verbose.txt"; sourceTree = "<group>"; };
+		7BFF50AA18F5718F006271B5 /* normal.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = normal.txt; sourceTree = "<group>"; };
+		7BFF50AB18F5718F006271B5 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
+		7BFF50AC18F5718F006271B5 /* test-term.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "test-term.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +127,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B18058118F4AE8800488684 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA11A3B1918D2E300BF7D2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA11A3C1918D2EB00BF7D2C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,10 +170,10 @@
 		7B18919418A9C5EA00E8A015 = {
 			isa = PBXGroup;
 			children = (
+				7BFF505B18F5718F006271B5 /* jp2a-1.0.6 */,
 				7B1891B118A9C60D00E8A015 /* animation.h */,
 				7B1891B018A9C60D00E8A015 /* nyancat.h */,
 				7B1891AF18A9C60D00E8A015 /* nyancat.m */,
-				7BFF505A18F4F8C7006271B5 /* animation.c */,
 				7B1891AE18A9C60D00E8A015 /* telnet.h */,
 				7B1891B418A9C87F00E8A015 /* TelnetServer.h */,
 				7B1891B518A9C87F00E8A015 /* TelnetServer.m */,
@@ -106,6 +191,117 @@
 				7B18057E18F4AE8800488684 /* curryQtaire */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7BFF505B18F5718F006271B5 /* jp2a-1.0.6 */ = {
+			isa = PBXGroup;
+			children = (
+				7BFF505F18F5718F006271B5 /* config.h.in */,
+				7BFF506018F5718F006271B5 /* configure */,
+				7BFF506118F5718F006271B5 /* configure.ac */,
+				7BFF506418F5718F006271B5 /* include */,
+				7BFF506718F5718F006271B5 /* INSTALL */,
+				7BFF506818F5718F006271B5 /* install-sh */,
+				7BFF506918F5718F006271B5 /* LICENSES */,
+				7BFF506A18F5718F006271B5 /* Makefile.am */,
+				7BFF506B18F5718F006271B5 /* Makefile.in */,
+				7BFF506C18F5718F006271B5 /* man */,
+				7BFF506F18F5718F006271B5 /* missing */,
+				7BFF507018F5718F006271B5 /* NEWS */,
+				7BFF507118F5718F006271B5 /* README */,
+				7BFF507218F5718F006271B5 /* src */,
+				7BFF507B18F5718F006271B5 /* tests */,
+			);
+			path = "jp2a-1.0.6";
+			sourceTree = "<group>";
+		};
+		7BFF506418F5718F006271B5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				7BFF506518F5718F006271B5 /* jp2a.h */,
+				7BFF506618F5718F006271B5 /* options.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		7BFF506C18F5718F006271B5 /* man */ = {
+			isa = PBXGroup;
+			children = (
+				7BFF506D18F5718F006271B5 /* jp2a.1 */,
+				7BFF506E18F5718F006271B5 /* jp2a.html */,
+			);
+			path = man;
+			sourceTree = "<group>";
+		};
+		7BFF507218F5718F006271B5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7BFF507318F5718F006271B5 /* curl.m */,
+				7BFF507418F5718F006271B5 /* html.m */,
+				7BFF507518F5718F006271B5 /* image.m */,
+				7BFF507618F5718F006271B5 /* jp2a.m */,
+				7BFF507718F5718F006271B5 /* Makefile.am */,
+				7BFF507818F5718F006271B5 /* Makefile.in */,
+				7BFF507918F5718F006271B5 /* options.m */,
+				7BFF507A18F5718F006271B5 /* term.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		7BFF507B18F5718F006271B5 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				7BFF507C18F5718F006271B5 /* 10h.txt */,
+				7BFF507D18F5718F006271B5 /* 110x30-i-b.txt */,
+				7BFF507E18F5718F006271B5 /* 160x49.txt */,
+				7BFF507F18F5718F006271B5 /* 1x1-inv.txt */,
+				7BFF508018F5718F006271B5 /* 2xnormal-b.txt */,
+				7BFF508118F5718F006271B5 /* 40x40.txt */,
+				7BFF508218F5718F006271B5 /* dalsnuten-256-light.html */,
+				7BFF508318F5718F006271B5 /* dalsnuten-256.html */,
+				7BFF508418F5718F006271B5 /* dalsnuten-640x480-gray-low.jpg */,
+				7BFF508518F5718F006271B5 /* dalsnuten-640x480-gray-low.txt */,
+				7BFF508618F5718F006271B5 /* dalsnuten-640x480-rgb-low.txt */,
+				7BFF508718F5718F006271B5 /* dalsnuten-80x49-inv.txt */,
+				7BFF508818F5718F006271B5 /* dalsnuten-color.html */,
+				7BFF508918F5718F006271B5 /* dalsnuten-color.txt */,
+				7BFF508A18F5718F006271B5 /* dalsnuten-invert.txt */,
+				7BFF508B18F5718F006271B5 /* dalsnuten-jp2a-2000x2000-md5.txt */,
+				7BFF508C18F5718F006271B5 /* dalsnuten-normal.txt */,
+				7BFF508D18F5718F006271B5 /* flip-xy-invert.txt */,
+				7BFF508E18F5718F006271B5 /* grind-2grayscale-fill.html */,
+				7BFF508F18F5718F006271B5 /* grind-2grayscale-fill.txt */,
+				7BFF509018F5718F006271B5 /* grind-2grayscale.html */,
+				7BFF509118F5718F006271B5 /* grind-blue.txt */,
+				7BFF509218F5718F006271B5 /* grind-color-dark-fill.html */,
+				7BFF509318F5718F006271B5 /* grind-color-dark.html */,
+				7BFF509418F5718F006271B5 /* grind-color.html */,
+				7BFF509518F5718F006271B5 /* grind-color.txt */,
+				7BFF509618F5718F006271B5 /* grind-fill.txt */,
+				7BFF509718F5718F006271B5 /* grind-flipx.html */,
+				7BFF509818F5718F006271B5 /* grind-flipxy.html */,
+				7BFF509918F5718F006271B5 /* grind-flipy.html */,
+				7BFF509A18F5718F006271B5 /* grind-green.txt */,
+				7BFF509B18F5718F006271B5 /* grind-nobold.html */,
+				7BFF509C18F5718F006271B5 /* grind-red.txt */,
+				7BFF509D18F5718F006271B5 /* grind.jpg */,
+				7BFF509E18F5718F006271B5 /* grind.txt */,
+				7BFF509F18F5718F006271B5 /* html-raw.txt */,
+				7BFF50A018F5718F006271B5 /* html-title.txt */,
+				7BFF50A118F5718F006271B5 /* jp2a.jpg */,
+				7BFF50A218F5718F006271B5 /* logo-30.txt */,
+				7BFF50A318F5718F006271B5 /* logo-40x25-gray.jpg */,
+				7BFF50A418F5718F006271B5 /* logo.html */,
+				7BFF50A518F5718F006271B5 /* Makefile */,
+				7BFF50A618F5718F006271B5 /* normal-b.txt */,
+				7BFF50A718F5718F006271B5 /* normal-clear.txt */,
+				7BFF50A818F5718F006271B5 /* normal-curl.txt */,
+				7BFF50A918F5718F006271B5 /* normal-verbose.txt */,
+				7BFF50AA18F5718F006271B5 /* normal.txt */,
+				7BFF50AB18F5718F006271B5 /* run-tests.sh */,
+				7BFF50AC18F5718F006271B5 /* test-term.txt */,
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +329,7 @@
 			buildConfigurationList = 7B1891AB18A9C5EA00E8A015 /* Build configuration list for PBXNativeTarget "nyancat" */;
 			buildPhases = (
 				7B18919918A9C5EA00E8A015 /* Sources */,
+				7BA11A3B1918D2E300BF7D2C /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,7 +349,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Alex Gray";
 			};
-			buildConfigurationList = 7B18919818A9C5EA00E8A015 /* Build configuration list for PBXProject "nyancat" */;
+			buildConfigurationList = 7B18919818A9C5EA00E8A015 /* Build configuration list for PBXProject "nyancatX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -175,7 +372,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BB4F6BF18F5771E003F88E9 /* html.m in Sources */,
+				7BFF50AE18F57215006271B5 /* term.m in Sources */,
+				7BB4F6C018F57766003F88E9 /* jp2a.m in Sources */,
 				7B18058418F4AE8800488684 /* main.m in Sources */,
+				7BB4F6BE18F576A2003F88E9 /* options.m in Sources */,
+				7BFF50AD18F571F2006271B5 /* image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +385,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B1891B218A9C60D00E8A015 /* nyancat.m in Sources */,
-				7B1891B618A9C87F00E8A015 /* TelnetServer.m in Sources */,
+				7BA11A3A1918D29C00BF7D2C /* nyancat.m in Sources */,
+				7BA11A391918D29400BF7D2C /* TelnetServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +396,15 @@
 		7B18058A18F4AE8800488684 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(AZBUILD)";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "curryQtaire/curryQtaire-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -209,19 +418,29 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(AZBUILD)";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
+					"-ljpeg",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/jp2a-1.0.6/include /usr/local/include";
 			};
 			name = Debug;
 		};
 		7B18058B18F4AE8800488684 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(AZBUILD)";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "curryQtaire/curryQtaire-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -231,11 +450,14 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				LD_RUNPATH_SEARCH_PATHS = "$(AZBUILD)";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
+					"-ljpeg",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/jp2a-1.0.6/include /usr/local/include";
 			};
 			name = Release;
 		};
@@ -311,8 +533,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "nyancat/nyancat-Prefix.pch";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "nyancatX/nyancat-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -325,8 +548,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "nyancat/nyancat-Prefix.pch";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "nyancatX/nyancat-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -347,7 +571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B18919818A9C5EA00E8A015 /* Build configuration list for PBXProject "nyancat" */ = {
+		7B18919818A9C5EA00E8A015 /* Build configuration list for PBXProject "nyancatX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B1891A918A9C5EA00E8A015 /* Debug */,
