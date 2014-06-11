@@ -1,11 +1,9 @@
 
+@import AppKit;
 #import "nyancat.h"
-@import Cocoa;
-
-
 
 //		These values crop the animation, as we have a full 64x64 stored, but we only want to display 40x24 (double width).	
-        int min_row    = 20, max_row = 43, min_col = 10, max_col = 50;
+        int          min_row    = 20, max_row = 43, min_col = 10, max_col = 50;
 static char __unused term[1024] = {'a', 'n', 's', 'i', 0}; //	 The default terminal is ANSI 
 
 @implementation  NyanCat  
@@ -21,8 +19,6 @@ static char __unused term[1024] = {'a', 'n', 's', 'i', 0}; //	 The default termi
 //		These are the values we have set or agreed to during our handshake.  These are set in send_command(...)	
       unsigned char telnet_do_set[256], telnet_will_set[256];
 }
-
-
 
 + (instancetype) nyanCat  { static id nyanCat = nil; static dispatch_once_t onceToken;
 
@@ -564,6 +560,7 @@ int main(int argc, char *argv[], char**argp ){	@autoreleasepool {
 
     [NSApplication sharedApplication];
     NyanCat *x    = NyanCat.new;
+    NSLog(@"Cat:%@", x);
     [x play];
     [NSApp run];
     
