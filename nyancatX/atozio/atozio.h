@@ -9,6 +9,13 @@
 @import AtoZ;
 @import Foundation; @import Darwin;  // needed for winsize, ioctl etc
 
+#import <AQOptionParser.h>
+
+
+@interface AtoZOption : NSObject
+@property NSS* name;
+@end
+
 #define CHAR_FMT(...) [NSString stringWithFormat:@__VA_ARGS__].UTF8String
 
 char term[1024] = {'a','n','s','i', 0};  /* The default terminal is ANSI */
@@ -26,5 +33,9 @@ typedef struct zTermSize { int width; int height; } zTermSize;
 @interface AtoZ (io)
 
 + (zTermSize) terminalSize;
++ (int) terminal_width;
++ (int) terminal_height;
+
++ (NSD*)parseArgs:(char *[])argv andKeys:(NSArray*)keys count:(int)argc;
 
 @end

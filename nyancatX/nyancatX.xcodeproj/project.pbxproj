@@ -10,7 +10,6 @@
 		7B18058418F4AE8800488684 /* curryQtaire.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B18058318F4AE8800488684 /* curryQtaire.m */; };
 		7BA11A391918D29400BF7D2C /* TelnetServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891B518A9C87F00E8A015 /* TelnetServer.m */; };
 		7BA11A3A1918D29C00BF7D2C /* nyancat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891AF18A9C60D00E8A015 /* nyancat.m */; };
-		7BC05C40194B091800E60ACA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05C3F194B091800E60ACA /* Cocoa.framework */; };
 		7BC05C4A194B091800E60ACA /* atozio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC05C49194B091800E60ACA /* atozio.m */; };
 		7BC05C51194B091900E60ACA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05C50194B091900E60ACA /* XCTest.framework */; };
 		7BC05C52194B091900E60ACA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05C3F194B091800E60ACA /* Cocoa.framework */; };
@@ -18,6 +17,7 @@
 		7BC05C5B194B091900E60ACA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BC05C59194B091900E60ACA /* InfoPlist.strings */; };
 		7BC05C5D194B091900E60ACA /* atozioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC05C5C194B091900E60ACA /* atozioTests.m */; };
 		7BC05C64194B096700E60ACA /* atozio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BC05C48194B091800E60ACA /* atozio.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BC05CA4194B40E900E60ACA /* libAQOptions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05CA3194B40DA00E60ACA /* libAQOptions.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +34,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7BC05C3C194B091800E60ACA;
 			remoteInfo = atozio;
+		};
+		7BC05C9E194B40DA00E60ACA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 385FFB9A156D461000F3D09E;
+			remoteInfo = AQOptionParser;
+		};
+		7BC05CA0194B40DA00E60ACA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 385FFBB2156D461000F3D09E;
+			remoteInfo = AQOptionParserTests;
+		};
+		7BC05CA2194B40DA00E60ACA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7BC05C6B194B3DB900E60ACA;
+			remoteInfo = AQOptions;
+		};
+		7BC05CA5194B40EE00E60ACA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BC05C6A194B3DB900E60ACA;
+			remoteInfo = AQOptions;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,6 +89,7 @@
 		7BC05C58194B091900E60ACA /* atozioTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "atozioTests-Info.plist"; sourceTree = "<group>"; };
 		7BC05C5A194B091900E60ACA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BC05C5C194B091900E60ACA /* atozioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atozioTests.m; sourceTree = "<group>"; };
+		7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQOptionParser.xcodeproj; path = ../../../AQOptionParser/AQOptionParser.xcodeproj; sourceTree = "<group>"; };
 		7BFF505F18F5718F006271B5 /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		7BFF506018F5718F006271B5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
 		7BFF506118F5718F006271B5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
@@ -143,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BC05C40194B091800E60ACA /* Cocoa.framework in Frameworks */,
+				7BC05CA4194B40E900E60ACA /* libAQOptions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +250,7 @@
 		7BC05C45194B091800E60ACA /* atozio */ = {
 			isa = PBXGroup;
 			children = (
+				7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */,
 				7BC05C48194B091800E60ACA /* atozio.h */,
 				7BC05C49194B091800E60ACA /* atozio.m */,
 				7BC05C46194B091800E60ACA /* Supporting Files */,
@@ -252,6 +282,16 @@
 				7BC05C59194B091900E60ACA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7BC05C99194B40D900E60ACA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7BC05C9F194B40DA00E60ACA /* AQOptionParser.framework */,
+				7BC05CA1194B40DA00E60ACA /* AQOptionParserTests.octest */,
+				7BC05CA3194B40DA00E60ACA /* libAQOptions.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7BFF505B18F5718F006271B5 /* jp2a-1.0.6 */ = {
@@ -418,6 +458,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7BC05CA6194B40EE00E60ACA /* PBXTargetDependency */,
 			);
 			name = atozio;
 			productName = atozio;
@@ -466,6 +507,12 @@
 			mainGroup = 7B18919418A9C5EA00E8A015;
 			productRefGroup = 7B18919E18A9C5EA00E8A015 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7BC05C99194B40D900E60ACA /* Products */;
+					ProjectRef = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7B18919C18A9C5EA00E8A015 /* nyancat */,
@@ -475,6 +522,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7BC05C9F194B40DA00E60ACA /* AQOptionParser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AQOptionParser.framework;
+			remoteRef = 7BC05C9E194B40DA00E60ACA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7BC05CA1194B40DA00E60ACA /* AQOptionParserTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AQOptionParserTests.octest;
+			remoteRef = 7BC05CA0194B40DA00E60ACA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7BC05CA3194B40DA00E60ACA /* libAQOptions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAQOptions.a;
+			remoteRef = 7BC05CA2194B40DA00E60ACA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7BC05C4D194B091800E60ACA /* Resources */ = {
@@ -534,6 +605,11 @@
 			target = 7BC05C3C194B091800E60ACA /* atozio */;
 			targetProxy = 7BC05C65194B0A8200E60ACA /* PBXContainerItemProxy */;
 		};
+		7BC05CA6194B40EE00E60ACA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AQOptions;
+			targetProxy = 7BC05CA5194B40EE00E60ACA /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -551,7 +627,6 @@
 		7B18058A18F4AE8800488684 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
@@ -563,29 +638,21 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(AZBUILD)/include",
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				LD_RUNPATH_SEARCH_PATHS = "$(AZBUILD)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
-					"-ljpeg",
 					"-latozio",
+					"-all_load",
+					"-lAQOptions",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/jp2a-1.0.6/include /usr/local/include";
 			};
 			name = Debug;
 		};
 		7B18058B18F4AE8800488684 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
@@ -593,22 +660,15 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(AZBUILD)/include",
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				LD_RUNPATH_SEARCH_PATHS = "$(AZBUILD)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
-					"-ljpeg",
 					"-latozio",
+					"-all_load",
+					"-lAQOptions",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/jp2a-1.0.6/include /usr/local/include";
 			};
 			name = Release;
 		};
@@ -623,6 +683,13 @@
 				FRAMEWORK_SEARCH_PATHS = "$(AZBUILD)";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -640,6 +707,13 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(AZBUILD)";
 				GCC_C_LANGUAGE_STANDARD = c11;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -707,7 +781,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-sub_library",
+					libAQOptions,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -739,7 +818,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-sub_library",
+					libAQOptions,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

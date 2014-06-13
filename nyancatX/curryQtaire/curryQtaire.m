@@ -35,9 +35,9 @@ int     frame_count =  0,      //	Number of frames to show before quitting or 0 
             min_row = -1,
             max_row = -1,
             min_col = -1,
-            max_col = -1,     // These values crop the animation, as we have a full 64x64 stored, but we only want to display 40x24 (double width).
-     terminal_width = 80,
-    terminal_height = 24;     //	Actual width/height of terminal.
+            max_col = -1;     // These values crop the animation, as we have a full 64x64 stored, but we only want to display 40x24 (double width).
+//     terminal_width = 80,
+//    terminal_height = 24;     //	Actual width/height of terminal.
 
 char using_automatic_width = 0, //	Flags to keep track of whether width/height were automatically set.
     using_automatic_height = 0;
@@ -47,13 +47,13 @@ void  SIGALRM_handler(int sig) { alarm(0); longjmp(environment, 1);	/* Unreachab
 void  SIGPIPE_handler(int sig) { finish(clear_screen); } // Handle the loss of stdout, as would be the case when in telnet mode and the client disconnects
 void SIGWINCH_handler(int sig) { struct winsize w;
 
-  ioctl(0, TIOCGWINSZ, &w);                                terminal_width = w.ws_col;
-                                                          terminal_height = w.ws_row;
+  ioctl(0, TIOCGWINSZ, &w);                              // AtoZ.terminal_width = w.ws_col;
+                                                         // AtoZ.terminal_height = w.ws_row;
 
-  if (using_automatic_width)  { min_col = (FRAME_WIDTH  -  terminal_width  / 2)  / 2;
-                                max_col = (FRAME_WIDTH  +  terminal_width  / 2)  / 2; }
-  if (using_automatic_height) { min_row = (FRAME_HEIGHT - (terminal_height - 1)) / 2;
-                                max_row = (FRAME_HEIGHT + (terminal_height - 1)) / 2; }
+  if (using_automatic_width)  { min_col = (FRAME_WIDTH  -  AtoZ.terminal_width  / 2)  / 2;
+                                max_col = (FRAME_WIDTH  +  AtoZ.terminal_width  / 2)  / 2; }
+  if (using_automatic_height) { min_row = (FRAME_HEIGHT - (AtoZ.terminal_height - 1)) / 2;
+                                max_row = (FRAME_HEIGHT + (AtoZ.terminal_height - 1)) / 2; }
 }
 
 
@@ -118,6 +118,29 @@ void usage(char * argv[]) {	printf(
 
 int main(int argc, char * argv[]) { @autoreleasepool {
 
+  NSArray *args = @[
+    @[@"help",        @(no_argument),        @"h", ^(AQOption*o){ printf("hello darling! : %s", o.description.UTF8String);}],
+    @[@"telnet",      @(no_argument),        @"t"],
+    @[@"intro",       @(no_argument),        @"i"],	@[@"skip-intro", @(no_argument),        @"I"],
+    @[@"no-counter",  @(no_argument),        @"n"],	@[@"no-title",   @(no_argument),        @"s"],
+    @[@"no-clear",    @(no_argument),        @"e"],	@[@"frames",     @(required_argument),  @"f"],
+    @[@"min-rows",    @(required_argument),  @"r"],	@[@"max-rows",   @(required_argument),  @"R"],
+    @[@"min-cols",    @(required_argument),  @"c"],	@[@"max-cols",   @(required_argument),  @"C"],
+    @[@"width",       @(required_argument),  @"W"],	@[@"height",     @(required_argument),  @"H"]];
+
+  AQOptionParser *p = [AQOptionParser new];
+  [p addLongOpts:args];
+  //:@"help" sName:'h' requires:AQOptionParameterTypeNone opt:NO]];
+  PARSE_MAIN(p);
+  for (AQOption* opt in p.allOptions) {
+    XX(opt.matched);
+    XX(opt.parameter);
+    XX(opt.optional);
+  }
+//  NSD* parsed = [AtoZ parseArgs:**argv andKeys:args count:argc];
+
+//  NSLog(@"%@", parsed);
+
   char term[1024] = {'a','n','s','i', 0};	int k, ttype, index, c;                           /* The default terminal is ANSI */
 
   uint32_t option = 0, done = 0, sb_mode = 0, __unused do_echo = 0;
@@ -126,7 +149,8 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 
   char show_intro = 1, skip_intro = 0;                                                      /* Whether or not to show the MOTD intro */
 
-  static struct option long_opts [] = {                                                      /* Long option names */
+  static const struct option long_opts[] =
+//  static struct option  [] = {                                                      /* Long option names */
 
     {"help",       no_argument,       0, 'h'},  {"telnet",     no_argument,       0, 't'},
     {"intro",      no_argument,       0, 'i'},	{"skip-intro", no_argument,       0, 'I'},
@@ -217,8 +241,8 @@ int main(int argc, char * argv[]) { @autoreleasepool {
                 /* This was a response to the NAWS command, meaning
                  * that this should be a window size */
                 alarm(2);
-                terminal_width = (sb[1] << 8) | sb[2];
-                terminal_height = (sb[3] << 8) | sb[4];
+//                terminal_width = (sb[1] << 8) | sb[2]; DISALED AToZ
+//                terminal_height = (sb[3] << 8) | sb[4];
                 done++;
               }
               break;
@@ -279,14 +303,14 @@ int main(int argc, char * argv[]) { @autoreleasepool {
   } /* Telnet mode */
   else {
 
-    char * nterm = getenv("TERM");
+//    char * nterm = getenv("TERM");
 
-    if (nterm) strcpy(term, nterm); 		/* We are running standalone, retrieve the terminal type from the environment. */
-    struct winsize w;
-    ioctl(0, TIOCGWINSZ, &w);
-    terminal_width  = w.ws_col;
-    terminal_height = w.ws_row; 		/* Also get the number of columns */
-    printf("Window:%i x %i", terminal_width, terminal_height);
+//    if (nterm) strcpy(term, nterm); 		/* We are running standalone, retrieve the terminal type from the environment. */
+//    struct winsize w;
+//    ioctl(0, TIOCGWINSZ, &w);
+//    terminal_width  = w.ws_col;
+//    terminal_height = w.ws_row; 		/* Also get the number of columns */
+//    printf("Window:%i x %i", terminal_width, terminal_height);
   }
 
   //	for (k = 0; k < strlen(term); ++k) term[k] = tolower(term[k]); 	/* Convert the entire terminal string to lower case */
@@ -313,14 +337,14 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 
   if (min_col == max_col) {	using_automatic_width = 1;
 
-    min_col = (FRAME_WIDTH - terminal_width/2) / 2;
-    max_col = (FRAME_WIDTH + terminal_width/2) / 2;
+    min_col = (FRAME_WIDTH - AtoZ.terminal_width/2) / 2;
+    max_col = (FRAME_WIDTH + AtoZ.terminal_width/2) / 2;
 
   }
   if (min_row == max_row) { using_automatic_height = 1;
 
-    min_row = (FRAME_HEIGHT - (terminal_height-1)) / 2;
-    max_row = (FRAME_HEIGHT + (terminal_height-1)) / 2;
+    min_row = (FRAME_HEIGHT - (AtoZ.terminal_height-1)) / 2;
+    max_row = (FRAME_HEIGHT + (AtoZ.terminal_height-1)) / 2;
 
     }
 
@@ -431,7 +455,7 @@ int main(int argc, char * argv[]) { @autoreleasepool {
       
       double diff = difftime(current, start);
       int nLen    = digits((int)diff);                  // Now count the length of the time difference so we can center
-      int width   = (terminal_width - 29 - nLen) / 2;   // 29 = the length of the rest of the string;  XXX: Replace this was actually checking the written bytes from a call to sprintf or something */
+      int width   = (AtoZ.terminal_width - 29 - nLen) / 2;   // 29 = the length of the rest of the string;  XXX: Replace this was actually checking the written bytes from a call to sprintf or something */
       
       while (width > 0) { printf(" ");	width--;  }     // Spit out some spaces so that we're actually centered
       
