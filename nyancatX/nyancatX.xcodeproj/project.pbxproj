@@ -18,6 +18,8 @@
 		7BC05C5D194B091900E60ACA /* atozioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC05C5C194B091900E60ACA /* atozioTests.m */; };
 		7BC05C64194B096700E60ACA /* atozio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BC05C48194B091800E60ACA /* atozio.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BC05CA4194B40E900E60ACA /* libAQOptions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05CA3194B40DA00E60ACA /* libAQOptions.a */; };
+		7BC05CC0194B966900E60ACA /* DDEmbeddedDataReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */; };
+		7BC05CC1194B966900E60ACA /* DDEmbeddedDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		7BC05C5A194B091900E60ACA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BC05C5C194B091900E60ACA /* atozioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atozioTests.m; sourceTree = "<group>"; };
 		7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AQOptionParser.xcodeproj; path = ../../../AQOptionParser/AQOptionParser.xcodeproj; sourceTree = "<group>"; };
+		7BC05CA7194B7DBB00E60ACA /* nyan-looped.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "nyan-looped.mp3"; sourceTree = "<group>"; };
+		7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEmbeddedDataReader.h; sourceTree = "<group>"; };
+		7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReader.m; sourceTree = "<group>"; };
+		7BC05CBF194B966900E60ACA /* DDEmbeddedDataReaderMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReaderMain.m; sourceTree = "<group>"; };
 		7BFF505F18F5718F006271B5 /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		7BFF506018F5718F006271B5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
 		7BFF506118F5718F006271B5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		7B18058218F4AE8800488684 /* curryQtaire */ = {
 			isa = PBXGroup;
 			children = (
+				7BC05CA7194B7DBB00E60ACA /* nyan-looped.mp3 */,
 				7B18058318F4AE8800488684 /* curryQtaire.m */,
 			);
 			path = curryQtaire;
@@ -250,6 +257,9 @@
 		7BC05C45194B091800E60ACA /* atozio */ = {
 			isa = PBXGroup;
 			children = (
+				7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */,
+				7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */,
+				7BC05CBF194B966900E60ACA /* DDEmbeddedDataReaderMain.m */,
 				7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */,
 				7BC05C48194B091800E60ACA /* atozio.h */,
 				7BC05C49194B091800E60ACA /* atozio.m */,
@@ -409,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BC05C64194B096700E60ACA /* atozio.h in Headers */,
+				7BC05CC0194B966900E60ACA /* DDEmbeddedDataReader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC05CC1194B966900E60ACA /* DDEmbeddedDataReader.m in Sources */,
 				7BC05C4A194B091800E60ACA /* atozio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,12 +650,16 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
 					"-latozio",
 					"-all_load",
+					"-sectcreate",
+					__SND,
+					__testSound,
+					"/Volumes/2T/ServiceData/git/nyancat/nyancatX/curryQtaire/nyan-looped.mp3",
 					"-lAQOptions",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,12 +676,16 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"-framework",
 					AtoZ,
 					"-latozio",
 					"-all_load",
+					"-sectcreate",
+					__SND,
+					__testSound,
+					"/Volumes/2T/ServiceData/git/nyancat/nyancatX/curryQtaire/nyan-looped.mp3",
 					"-lAQOptions",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -946,6 +966,7 @@
 				7BC05C5F194B091900E60ACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7BC05C63194B091900E60ACA /* Build configuration list for PBXNativeTarget "atozioTests" */ = {
 			isa = XCConfigurationList;
@@ -954,6 +975,7 @@
 				7BC05C61194B091900E60ACA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

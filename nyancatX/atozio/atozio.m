@@ -2,6 +2,7 @@
 #import "atozio.h"
 @import Darwin;
 #import <getopt.h>
+#import "DDEmbeddedDataReader.h"
 
 #define GOT_TO printf("got to %i\n", __LINE__)
 
@@ -11,6 +12,10 @@ __attribute__ ((constructor)) static void atozioInitialize(){
 
   printf("%s\n\n", "Welcome to AtoZ-io!");
   
+}
+
++ (NSData*)embeddedDataFromSegment:(NSS*)seg inSection:(NSS*)sec error:(NSERR**)e {
+  return [DDEmbeddedDataReader embeddedDataFromSegment:seg inSection:sec error:e];
 }
 
 + (int) terminal_width { return self.terminalSize.width; }
@@ -26,6 +31,18 @@ __attribute__ ((constructor)) static void atozioInitialize(){
     return (zTermSize){ w.ws_col, w.ws_row};
 //    terminal_height = w.ws_row; 		/* Also get the number of columns */
 //    printf("Window:%i x %i", terminal_width, terminal_height);
+}
++ (AVAudioPlayer*) playerForAudio:(id)dataOrPath {
+
+  NSERR *e;
+  AVAudioPlayer *player =
+  [dataOrPath isKindOfClass:NSData.class] ? [AVAudioPlayer.alloc initWithData:dataOrPath error:&e] :
+  [dataOrPath isKindOfClass:NSURL.class] || [dataOrPath isKindOfClass:NSString.class] ?
+  [AVAudioPlayer.alloc initWithContentsOfURL:[dataOrPath isKindOfClass:NSURL.class] ? dataOrPath  : [NSURL fileURLWithPath:dataOrPath] error:&e] : nil; //lets create an audio player to play the audio.
+  if (!player || e) return NSLog(@"problem making player: %@", e), (id)nil;
+  player.numberOfLoops = -1; // -1 means infinite loops
+  [player prepareToPlay]; //prepare the file to play
+  return player;
 }
 
 + (NSD*)parseArgs:(char *[])argv andKeys:(NSArray*)keys count:(int)argc {
@@ -144,4 +161,6 @@ void print_with_newlines(char *first,...){
 }
 
 void reset_cursor() { printf("\033[%s", clear_screen ? "H" : "u"); }
+
+void   clr_screen() { printf(clear_screen ? "\033[H\033[2J\033[?25l" : "\033[s"); 		/* Clear the screen */ }
 
