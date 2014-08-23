@@ -1,0 +1,6 @@
+[submodule "nyancatX/atozio/RunLoopController"]
+	path = nyancatX/atozio/RunLoopController
+	url = https://github.com/trojanfoe/RunLoopController.git
+[submodule "nyancatX/atozio/StaticLibraryXIB"]
+	path = nyancatX/atozio/StaticLibraryXIB
+	url = git@github.com:mralexgray/StaticLibraryXIB.git

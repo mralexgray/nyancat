@@ -17,6 +17,54 @@ void  set_options (void);
 #import "telnet.h"
 #import "animation.h" //	The animation frames are stored separately in 	this header so they don't clutter the core source
 
+@interface      curryQtaire : NSObject FACTORY cQT;
+
+@prop_   NSTimer * timer;
+@prop_   AVAudioPlayer * player;
+@prop_RO IndexedKeyMap * colors; //	Color palette to use for final output Specifically, this should be either control sequences or raw
+@prop_NA float volume;
+@end
+@implementation curryQtaire @synthesize colors;
+
+- (void) setVolume:(float)volume {
+
+  _player.volume = (_volume = volume - floorf(volume));
+}
+SYNTHESIZE_SINGLETON_FOR_CLASS(curryQtaire, cQT)
+- init { SUPERINIT;
+
+  _player = [AtoZ playerForAudio:[AtoZ embeddedDataFromSegment:@"__SND" inSection:@"__testSound" error:nil]];
+  [_timer = [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
+    self.volume = _volume + .1;
+    NSLog(@"Yay!",nil);
+  } repeats:YES] fire];
+
+  return self;
+}
+
+- (IndexedKeyMap*) colors { //if (colors) return (char*)colors;
+
+  return colors = colors ?:
+//  [AZSparseArray arrayWithObjectsAndIndexes:
+  [IndexedKeyMap mapWithObjectsAndIndexes:
+  @"\033[48;5;17m", ',', /* Blue background */
+  @"\033[48;5;231m",'.', /* White stars */
+  @"\033[48;5;16m" ,'\'', /* Black border */
+  @"\033[48;5;230m", '@', /* Tan poptart */
+  @"\033[48;5;175m", '$', /* Pink poptart */
+  @"\033[48;5;162m", '-', /* Red poptart */
+  @"\033[48;5;196m", '>', /* Red rainbow */
+  @"\033[48;5;214m", '&', /* Orange rainbow */
+  @"\033[48;5;226m", '+', /* Yellow Rainbow */
+  @"\033[48;5;118m", '#', /* Green rainbow */
+  @"\033[48;5;33m" , '=', /* Light blue rainbow */
+  @"\033[48;5;19m" , ';', /* Dark blue rainbow */
+  @"\033[48;5;240m", '*', /* Gray cat face */
+  @"\033[48;5;175m", '%', nil]; /* Pink cheeks */
+}
+@end
+
+
 /*	Print escape sequences to return cursor to visible mode	and exit the application.		*/
 void finish(BOOL clrScrn) {	printf(clrScrn ? "\033[?25h\033[0m\033[H\033[2J":"\033[0m\n"); exit(0); }
 
@@ -53,14 +101,15 @@ void SIGWINCH_handler(int sig) { struct winsize w;
                                 max_row = (FRAME_HEIGHT + (AtoZ.terminal_height - 1)) / 2; }
 }
 
-unsigned char telnet_options [256] = { 0 }, //	These are the options we want to use as a telnet server. These are set in set_options()
-              telnet_willack [256] = { 0 },
-               telnet_do_set [256] = { 0 }, // These are the values we have set or agreed to during our handshake. These are set in send_command(...)
-             telnet_will_set [256] = { 0 };
+unsigned char
+  telnet_options [256] = { 0 }, //	These are the options we want to use as a telnet server. These are set in set_options()
+  telnet_willack [256] = { 0 },
+   telnet_do_set [256] = { 0 }, // These are the values we have set or agreed to during our handshake. These are set in send_command(...)
+ telnet_will_set [256] = { 0 };
 
 #pragma mark - MAIN
 
-int k, ttype, opt_index, c;                       /// The default terminal is ANSI
+int k, ttype, opt_index, c;  /// The default terminal is ANSI
 
 uint32_t option = 0, done = 0, sb_mode = 0, __unused do_echo = 0;
 
@@ -68,68 +117,9 @@ short sb_len = 0;	unsigned char sb[1024] = {0};   /// Various pieces for the tel
 
 ///  char show_intro = 1, skip_intro = 0;         /// Whether or not to show the MOTD intro
 
-@interface      curryQtaire : NSObject + (INST) cQT;
-
-@prop_   AVAudioPlayer * player;
-@prop_RO IndexedKeyMap * colors; //	Color palette to use for final output Specifically, this should be either control sequences or raw
-@end
-@implementation curryQtaire @synthesize colors;
-
-SYNTHESIZE_SINGLETON_FOR_CLASS(curryQtaire, cQT)
-- init { SUPERINIT;
-
-  _player = [AtoZ playerForAudio:[AtoZ embeddedDataFromSegment:@"__SND" inSection:@"__testSound" error:nil]];
-  return self;
-}
-
-- (IndexedKeyMap*) colors { //if (colors) return (char*)colors;
-
-  return colors = colors ?:
-//  [AZSparseArray arrayWithObjectsAndIndexes:
-  [IndexedKeyMap mapWithObjectsAndIndexes:
-  @"\033[48;5;17m", ',', /* Blue background */
-  @"\033[48;5;231m",'.', /* White stars */
-  @"\033[48;5;16m" ,'\'', /* Black border */
-  @"\033[48;5;230m", '@', /* Tan poptart */
-  @"\033[48;5;175m", '$', /* Pink poptart */
-  @"\033[48;5;162m", '-', /* Red poptart */
-  @"\033[48;5;196m", '>', /* Red rainbow */
-  @"\033[48;5;214m", '&', /* Orange rainbow */
-  @"\033[48;5;226m", '+', /* Yellow Rainbow */
-  @"\033[48;5;118m", '#', /* Green rainbow */
-  @"\033[48;5;33m" , '=', /* Light blue rainbow */
-  @"\033[48;5;19m" , ';', /* Dark blue rainbow */
-  @"\033[48;5;240m", '*', /* Gray cat face */
-  @"\033[48;5;175m", '%', nil]; /* Pink cheeks */
-}
-@end
 
 int main(int argc, char * argv[]) { @autoreleasepool {
 
-
-  #ifdef ARGSHIT
-  void(^optsSilliness)() = ^{
-  NSArray *args = @[
-    @[@"help",        @(no_argument),        @"h", ^(AQOption*o){ printf("hello darling! : %s", o.description.UTF8String);}],
-    @[@"telnet",      @(no_argument),        @"t"],
-    @[@"intro",       @(no_argument),        @"i"],	@[@"skip-intro", @(no_argument),        @"I"],
-    @[@"no-counter",  @(no_argument),        @"n"],	@[@"no-title",   @(no_argument),        @"s"],
-    @[@"no-clear",    @(no_argument),        @"e"],	@[@"frames",     @(required_argument),  @"f"],
-    @[@"min-rows",    @(required_argument),  @"r"],	@[@"max-rows",   @(required_argument),  @"R"],
-    @[@"min-cols",    @(required_argument),  @"c"],	@[@"max-cols",   @(required_argument),  @"C"],
-    @[@"width",       @(required_argument),  @"W"],	@[@"height",     @(required_argument),  @"H"]];
-
-  AQOptionParser *p = [AQOptionParser new];
-  [p addLongOpts:args];
-  //:@"help" sName:'h' requires:AQOptionParameterTypeNone opt:NO]];
-  PARSE_MAIN(p);
-  for (AQOption* opt in p.allOptions) {
-    XX(opt.matched);
-    XX(opt.parameter);
-    XX(opt.optional);
-  }
-  };
-  #endif
 
   parseOpts(argc,argv);
 
@@ -175,13 +165,11 @@ int main(int argc, char * argv[]) { @autoreleasepool {
   }
 
   clr_screen();
-
-//  intro(); //if (show_intro) {           /* Display the MOTD */ }
+       intro();
 
   NSLog(@"%lu\n\n%@", curryQtaire.cQT.colors.count, curryQtaire.cQT.colors);
 
-
-//  [curryQtaire.cQT.player play];
+    [curryQtaire.cQT.player play];
 
   /* Store the start time */
   time_t start, current;
@@ -203,63 +191,21 @@ int main(int argc, char * argv[]) { @autoreleasepool {
 
           int mod_x = ((-x + 2) % 16) / 8;
               mod_x = isEven(i) ? 1 - mod_x : mod_x;
-        //if ((i / 2) % 2) mod_x  = 1 - mod_x;
-        //char *rainbow = ",,>>&&&+++###==;;;,,";	/* Our rainbow, with some padding. */	rainbow
+
           ",,>>&&&+++###==;;;,,"[mod_x + y - 23];
 
         }) : x < 0 || y < 0 || y >= FRAME_HEIGHT
-                            || x >= FRAME_WIDTH ? ','                /// Fill all other areas with background
-                                                : frames[i][y][x];   /// Otherwise, get the color from the animation frame.
+                            || x >= FRAME_WIDTH ? ','                 /// Fill all other areas with background
+                                                : frames[i][y][x];    /// Otherwise, get the color from the animation frame.
 
-        if (color != last && colors[color]) {
-          /* Normal Mode, send escape (because the color changed) */
-          last = color;
-          printf("%s%s", colors[color], output);
-        } else printf("%s", output);					/* Same color, just send the output characters */
+        BOOL newColortime = color != last && colors[color];           /// Normal Mode, send escape (because the color changed)
+        printf("%s%s", newColortime ? colors[last = color] : "",      /// vs. Same color, just send the output characters
+                       output);
 
-      d}
-//          color != last && [curryQtaire.cQT.colors[color] UTF8String] 	/* Normal Mode, send escape (because the color changed) */
-//                 ? printf("%s%s", [curryQtaire.cQT.colors[last = color]UTF8String], output)
-//                 : printf("%s", output);	/* Same color, just send the output characters */
-//        }
+      }
 
       newline(1); /// End of row, send newline
     }
-
-    ///  if (always_escape) 	printf("%s", colors[color]); else {			// Text mode (or "Always Send Color Escapes")
-
-    //	/* Store the start time */
-    //	time_t start, current;	time(&start);
-    //
-    //	int playing       = 1, y, x;    /* Animation should continue [left here for modifications] */            /* x/y coordinates of what we're drawing */
-    //	size_t i          = 0;       /* Current frame # */
-    //	unsigned int f    = 0; /* Total frames passed */
-    //	__block char last = 0;      /* Last color index rendered */
-    //	while (playing) {
-    //    printf(clear_screen?"\033[H":"\033[u");  /* Reset cursor */
-    ////    IterateGridWithBlock($RNG(min_row,max_row - min_row),$RNG(min_col,max_col - min_col), ^(NSI x, NSI y) {
-    //    for (y = min_row; y < max_row; ++y) {   		/* Render the frame */
-    //      for (x = min_col; x < max_col; ++x) {
-    //      char color =  y > 23 && y < 43 && x < 0 ? ({
-    //        int mod_x = ((-x+2) % 16) / 8;                        					/* Generate the rainbow tail. This is done with a pretty simplistic square wave. */
-    //        if ((i / 2) % 2) 	mod_x = 1 - mod_x;
-    //        char *rainbow = ",,>>&&&+++###==;;;,,";       					/* Our rainbow, with some padding. */
-    //        rainbow[mod_x + y-23];
-    //      }) : x < 0 || y < 0 || y >= FRAME_HEIGHT || x >= FRAME_WIDTH  /* Fill all other areas with background */
-    //      ? ',': frames[i][y][x];  /* Otherwise, get the color from the animation frame. */
-    //
-    //      if (always_escape) 					printf("%s", colors[color]);					/* Text mode (or "Always Send Color Escapes") */
-    //      else {
-    //        if (color != last && colors[color]) {
-    //          /* Normal Mode, send escape (because the color changed) */
-    //          last = color;
-    //          printf("%s%s", colors[color], output);
-    //        } else printf("%s", output);					/* Same color, just send the output characters */
-    //      }
-    //      /* End of row, send newline */
-    //			newline(1);
-    //      }
-    //    }
     if (show_counter) {  time(&current);                // Get the current time for the "You have nyaned..." string
       
       double diff = difftime(current, start);
@@ -272,15 +218,15 @@ int main(int argc, char * argv[]) { @autoreleasepool {
        and the \033[1;37m ensures that our text is bright white. The \033[0m prevents the Apple ][ from flipping everything, 
        but makes the whole nyancat less bright on the vt220  	 */
       
-      printf("\033[1;37mYou have nyaned for %0.0f seconds!\033[J\033[0m", diff);
+      printf("\033[1;37mVolume:%f ... You have nyaned for %0.0f seconds!\033[J\033[0m", curryQtaire.cQT.volume, diff);
     }
     
-    last = 0;                                           // Reset the last color so that the escape sequences rewrite
-    ++f;                                                // Update frame count
-    if (frame_count != 0 && f == frame_count) finish(clear_screen);
+    last = 0;   // Reset the last color so that the escape sequences rewrite
+    ++f;        // Update frame count
+    if (frame_count && f == frame_count) finish(clear_screen);
     ++i;
-    i = (!frames[i]) ?: i;                              // Loop animation
-    usleep(90000);                                      // Wait
+    i = !frames[i] ?: i;  // Loop animation
+    usleep(90000);        // Wait
   }
 }
   return 0;
@@ -313,7 +259,19 @@ void        intro (void) {
                     : (void)nil;
 
 }
-void    parseOpts (int argc, char * argv[]) {
+void  set_options (void) {  //  Set the default options for the telnet server.
+
+  telnet_options        [ECHO] = WONT; // We will not echo input
+  telnet_options         [SGA] = WILL; // We will set graphics modes
+  telnet_options [NEW_ENVIRON] = WONT; // We will not set new environments
+  telnet_willack        [ECHO] =   DO; // The client should echo its own input
+  telnet_willack         [SGA] =   DO; // The client can set a graphics mode
+  telnet_willack        [NAWS] =   DO; // The client should not change, but it should tell us its window size
+  telnet_willack       [TTYPE] =   DO; // The client should tell us its terminal type (very important)
+  telnet_willack    [LINEMODE] = DONT; // No linemode
+  telnet_willack [NEW_ENVIRON] =   DO; // And the client can set a new environment
+}
+void    parseOpts (int  argc, char * argv[]) {
 
   static struct option long_opts[] = {                                                      /* Long option names */
 
@@ -479,22 +437,7 @@ void    parseOpts (int argc, char * argv[]) {
   }
 
 }
-
-void  set_options (void) {  //  Set the default options for the telnet server.
-
-  telnet_options        [ECHO] = WONT; // We will not echo input
-  telnet_options         [SGA] = WILL; // We will set graphics modes
-  telnet_options [NEW_ENVIRON] = WONT; // We will not set new environments
-  telnet_willack        [ECHO] =   DO; // The client should echo its own input
-  telnet_willack         [SGA] =   DO; // The client can set a graphics mode
-  telnet_willack        [NAWS] =   DO; // The client should not change, but it should tell us its window size
-  telnet_willack       [TTYPE] =   DO; // The client should tell us its terminal type (very important)
-  telnet_willack    [LINEMODE] = DONT; // No linemode
-  telnet_willack [NEW_ENVIRON] =   DO; // And the client can set a new environment
-}
-
-///	Send a command (cmd) to the telnet client. Also does special handling for DO/DONT/WILL/WONT
-void send_command (int cmd, int opt) {
+void send_command (int   cmd,  int   opt)    {
   if (cmd == DO || cmd == DONT) { 	/* Send a command to the telnet client */
     if (((cmd == DO) && (telnet_do_set[opt] != DO)) || 		/* DO commands say what the client should do. */
         ((cmd == DONT) && (telnet_do_set[opt] != DONT))) {
@@ -507,10 +450,8 @@ void send_command (int cmd, int opt) {
       printf("%c%c%c", IAC, cmd, opt);
     }
   } else 		printf("%c%c", IAC, cmd);		/* Other commands are sent raw */
-}
-
-///	Print the usage / help text describing options
-void usage(char * argv[]) {	printf(
+} ///	Send a (cmd) to the telnet client. Also does special handling for DO/DONT/WILL/WONT
+void        usage (char *argv[])             {	printf(
 
                                    "Terminal Nyancat\
                                    usage: %s [-hitn] [-f \033[3mframes\033[0m]\
@@ -528,8 +469,32 @@ void usage(char * argv[]) {	printf(
                                    -W --width      \033[3mCrop the animation to the given width\033[0m\
                                    -H --height     \033[3mCrop the animation to the given height\033[0m\
                                    -h --help       \033[3mShow this help message.\033[0m\n", argv[0]);
-}
+} ///	Print the usage / help text describing options
 
+
+#ifdef ARGSHIT
+void(^optsSilliness)() = ^{
+NSArray *args = @[
+  @[@"help",        @(no_argument),        @"h", ^(AQOption*o){ printf("hello darling! : %s", o.description.UTF8String);}],
+  @[@"telnet",      @(no_argument),        @"t"],
+  @[@"intro",       @(no_argument),        @"i"],	@[@"skip-intro", @(no_argument),        @"I"],
+  @[@"no-counter",  @(no_argument),        @"n"],	@[@"no-title",   @(no_argument),        @"s"],
+  @[@"no-clear",    @(no_argument),        @"e"],	@[@"frames",     @(required_argument),  @"f"],
+  @[@"min-rows",    @(required_argument),  @"r"],	@[@"max-rows",   @(required_argument),  @"R"],
+  @[@"min-cols",    @(required_argument),  @"c"],	@[@"max-cols",   @(required_argument),  @"C"],
+  @[@"width",       @(required_argument),  @"W"],	@[@"height",     @(required_argument),  @"H"]];
+
+AQOptionParser *p = [AQOptionParser new];
+[p addLongOpts:args];
+//:@"help" sName:'h' requires:AQOptionParameterTypeNone opt:NO]];
+PARSE_MAIN(p);
+for (AQOption* opt in p.allOptions) {
+  XX(opt.matched);
+  XX(opt.parameter);
+  XX(opt.optional);
+}
+};
+#endif
 
 /*
 void(^)(int,uint32_t) setup_telet(void) { return ^void(int show_intro, uint32_t option){
@@ -659,4 +624,54 @@ void(^)(int,uint32_t) setup_telet(void) { return ^void(int show_intro, uint32_t 
 #ifndef TIOCGWINSZ
 #include <termios.h>
 #endif
+
+
+
+
+
+
+          color != last && [curryQtaire.cQT.colors[color] UTF8String] 	/// Normal Mode, send escape (because the color changed)
+                 ? printf("%s%s", [curryQtaire.cQT.colors[last = color]UTF8String], output)
+                 : printf("%s", output);	/// Same color, just send the output characters
+        }
+
+///  if (always_escape) 	printf("%s", colors[color]); else {			// Text mode (or "Always Send Color Escapes")
+//        } else printf("%s", output);
+
+	/// Store the start time
+if ((i / 2) % 2) mod_x  = 1 - mod_x;
+char *rainbow = ",,>>&&&+++###==;;;,,";	/// Our rainbow, with some padding. 	rainbow
+
+    //	time_t start, current;	time(&start);
+
+	int playing       = 1, y, x;    /// Animation should continue [left here for modifications]  x/y coordinates of what we're drawing
+	size_t i          = 0;       /// Current frame #
+	unsigned int f    = 0; /// Total frames passed
+	__block char last = 0;      /// Last color index rendered
+	while (playing) {
+    printf(clear_screen?"\033[H":"\033[u");  /// Reset cursor
+//    IterateGridWithBlock($RNG(min_row,max_row - min_row),$RNG(min_col,max_col - min_col), ^(NSI x, NSI y) {
+    for (y = min_row; y < max_row; ++y) {   		/// Render the frame
+      for (x = min_col; x < max_col; ++x) {
+      char color =  y > 23 && y < 43 && x < 0 ? ({
+    //        int mod_x = ((-x+2) % 16) / 8;                        					/// Generate the rainbow tail. This is done with a pretty simplistic square wave.
+        if ((i / 2) % 2) 	mod_x = 1 - mod_x;
+        char *rainbow = ",,>>&&&+++###==;;;,,";       					/// Our rainbow, with some padding.
+        rainbow[mod_x + y-23];
+      }) : x < 0 || y < 0 || y >= FRAME_HEIGHT || x >= FRAME_WIDTH  /// Fill all other areas with background
+      ? ',': frames[i][y][x];  /// Otherwise, get the color from the animation frame.
+
+      if (always_escape) 					printf("%s", colors[color]);					/// Text mode (or "Always Send Color Escapes")
+      else {
+        if (color != last && colors[color]) {
+          /// Normal Mode, send escape (because the color changed)
+          last = color;
+          printf("%s%s", colors[color], output);
+        } else printf("%s", output);					/// Same color, just send the output characters
+      }
+      /// End of row, send newline
+			newline(1);
+      }
+    }
+
 */

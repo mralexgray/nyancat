@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7B18058418F4AE8800488684 /* curryQtaire.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B18058318F4AE8800488684 /* curryQtaire.m */; };
+		7B2E9F8319509CE90075EC79 /* NSNib+XMLBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B2E9F8119509CE90075EC79 /* NSNib+XMLBase64.h */; };
+		7B2E9F8419509CE90075EC79 /* NSNib+XMLBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2E9F8219509CE90075EC79 /* NSNib+XMLBase64.m */; };
+		7B5297FA1951BC16005203F3 /* atozio_testbed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5297F91951BC16005203F3 /* atozio_testbed.m */; };
+		7B5298081951BC27005203F3 /* libatozio.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BC05C3D194B091800E60ACA /* libatozio.dylib */; };
 		7BA11A391918D29400BF7D2C /* TelnetServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891B518A9C87F00E8A015 /* TelnetServer.m */; };
 		7BA11A3A1918D29C00BF7D2C /* nyancat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1891AF18A9C60D00E8A015 /* nyancat.m */; };
 		7BC05C4A194B091800E60ACA /* atozio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BC05C49194B091800E60ACA /* atozio.m */; };
@@ -23,6 +27,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7B0C48A919A93F590046167F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B0C48A219A93F570046167F /* regex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B0C489119A93F570046167F;
+			remoteInfo = regex;
+		};
+		7B2E9F7919509CB10075EC79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9363F681825DFBE00D68893;
+			remoteInfo = NibTest;
+		};
+		7B2E9F7B19509CB10075EC79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D9996F1218262EED009366EB;
+			remoteInfo = StaticLibraryNibs;
+		};
+		7B2E9F7D19509CB10075EC79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B0FE563194FC5B900805775;
+			remoteInfo = denibber;
+		};
+		7B2E9F7F19509CB10075EC79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B0FE576194FEA0300805775;
+			remoteInfo = CLInibber;
+		};
+		7B5298061951BC1F005203F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B18919518A9C5EA00E8A015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BC05C3C194B091800E60ACA;
+			remoteInfo = atozio;
+		};
+		7BAA58F4194C9E4300FE247C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BAA58EF194C9E4200FE247C /* QLTool.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6AD8E703193221E500A17ADF;
+			remoteInfo = QLTool;
+		};
 		7BC05C53194B091900E60ACA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7B18919518A9C5EA00E8A015 /* Project object */;
@@ -67,7 +120,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7B5297F51951BC15005203F3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7B0C48A219A93F570046167F /* regex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = regex.xcodeproj; path = ../../../dev/regex/regex.xcodeproj; sourceTree = "<group>"; };
 		7B18057E18F4AE8800488684 /* curryQtaire */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = curryQtaire; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B18058318F4AE8800488684 /* curryQtaire.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = curryQtaire.m; sourceTree = "<group>"; };
 		7B18919D18A9C5EA00E8A015 /* nyancat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = nyancat; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,12 +144,19 @@
 		7B1891B118A9C60D00E8A015 /* animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = animation.h; path = curryQtaire/animation.h; sourceTree = "<group>"; };
 		7B1891B418A9C87F00E8A015 /* TelnetServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TelnetServer.h; path = nyancatX/TelnetServer.h; sourceTree = "<group>"; };
 		7B1891B518A9C87F00E8A015 /* TelnetServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TelnetServer.m; path = nyancatX/TelnetServer.m; sourceTree = "<group>"; };
+		7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StaticLibraryNibs.xcodeproj; path = StaticLibraryXIB/StaticLibraryNibs.xcodeproj; sourceTree = "<group>"; };
+		7B2E9F8119509CE90075EC79 /* NSNib+XMLBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNib+XMLBase64.h"; sourceTree = "<group>"; };
+		7B2E9F8219509CE90075EC79 /* NSNib+XMLBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNib+XMLBase64.m"; sourceTree = "<group>"; };
+		7B5297F71951BC15005203F3 /* atozio_testbed */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = atozio_testbed; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B5297F91951BC16005203F3 /* atozio_testbed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atozio_testbed.m; sourceTree = "<group>"; };
+		7BAA58EE194BFCA900FE247C /* nyancat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = nyancat.c; path = ../src/nyancat.c; sourceTree = "<group>"; };
+		7BAA58EF194C9E4200FE247C /* QLTool.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QLTool.xcodeproj; path = ../../../QLTool/QLTool.xcodeproj; sourceTree = "<group>"; };
+		7BAA58F8194C9E9600FE247C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7BC05C3D194B091800E60ACA /* libatozio.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libatozio.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BC05C3F194B091800E60ACA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7BC05C42194B091800E60ACA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7BC05C43194B091800E60ACA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7BC05C44194B091800E60ACA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		7BC05C47194B091800E60ACA /* atozio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "atozio-Prefix.pch"; sourceTree = "<group>"; };
 		7BC05C48194B091800E60ACA /* atozio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atozio.h; sourceTree = "<group>"; };
 		7BC05C49194B091800E60ACA /* atozio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = atozio.m; sourceTree = "<group>"; };
 		7BC05C4F194B091800E60ACA /* atozioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = atozioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +168,6 @@
 		7BC05CA7194B7DBB00E60ACA /* nyan-looped.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "nyan-looped.mp3"; sourceTree = "<group>"; };
 		7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEmbeddedDataReader.h; sourceTree = "<group>"; };
 		7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReader.m; sourceTree = "<group>"; };
-		7BC05CBF194B966900E60ACA /* DDEmbeddedDataReaderMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEmbeddedDataReaderMain.m; sourceTree = "<group>"; };
 		7BFF505F18F5718F006271B5 /* config.h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		7BFF506018F5718F006271B5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
 		7BFF506118F5718F006271B5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
@@ -167,6 +239,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7B5297F41951BC15005203F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B5298081951BC27005203F3 /* libatozio.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7BA11A3B1918D2E300BF7D2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,6 +275,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B0C48A319A93F570046167F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B0C48AA19A93F590046167F /* regex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B0FE555194FC28D00805775 /* Embedding Data */ = {
+			isa = PBXGroup;
+			children = (
+				7B2E9F8119509CE90075EC79 /* NSNib+XMLBase64.h */,
+				7B2E9F8219509CE90075EC79 /* NSNib+XMLBase64.m */,
+				7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */,
+				7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */,
+				7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */,
+			);
+			name = "Embedding Data";
+			sourceTree = "<group>";
+		};
 		7B18058218F4AE8800488684 /* curryQtaire */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +307,7 @@
 		7B18919418A9C5EA00E8A015 = {
 			isa = PBXGroup;
 			children = (
+				7B0C48A219A93F570046167F /* regex.xcodeproj */,
 				7BFF505B18F5718F006271B5 /* jp2a-1.0.6 */,
 				7B1891B118A9C60D00E8A015 /* animation.h */,
 				7B1891B018A9C60D00E8A015 /* nyancat.h */,
@@ -215,9 +316,11 @@
 				7B1891B418A9C87F00E8A015 /* TelnetServer.h */,
 				7B1891B518A9C87F00E8A015 /* TelnetServer.m */,
 				7B1891A618A9C5EA00E8A015 /* nyancat-Prefix.pch */,
+				7BAA58EE194BFCA900FE247C /* nyancat.c */,
 				7B18058218F4AE8800488684 /* curryQtaire */,
 				7BC05C45194B091800E60ACA /* atozio */,
 				7BC05C56194B091900E60ACA /* atozioTests */,
+				7B5297F81951BC16005203F3 /* atozio_testbed */,
 				7BC05C3E194B091800E60ACA /* Frameworks */,
 				7B18919E18A9C5EA00E8A015 /* Products */,
 			);
@@ -230,6 +333,34 @@
 				7B18057E18F4AE8800488684 /* curryQtaire */,
 				7BC05C3D194B091800E60ACA /* libatozio.dylib */,
 				7BC05C4F194B091800E60ACA /* atozioTests.xctest */,
+				7B5297F71951BC15005203F3 /* atozio_testbed */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B2E9F6F19509CB10075EC79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B2E9F7A19509CB10075EC79 /* libNibTest.a */,
+				7B2E9F7C19509CB10075EC79 /* StaticLibraryNibs.app */,
+				7B2E9F7E19509CB10075EC79 /* denibber */,
+				7B2E9F8019509CB10075EC79 /* CLInibber */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B5297F81951BC16005203F3 /* atozio_testbed */ = {
+			isa = PBXGroup;
+			children = (
+				7B5297F91951BC16005203F3 /* atozio_testbed.m */,
+			);
+			path = atozio_testbed;
+			sourceTree = "<group>";
+		};
+		7BAA58F0194C9E4200FE247C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7BAA58F5194C9E4300FE247C /* QLTool.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,23 +388,14 @@
 		7BC05C45194B091800E60ACA /* atozio */ = {
 			isa = PBXGroup;
 			children = (
-				7BC05CBD194B966900E60ACA /* DDEmbeddedDataReader.h */,
-				7BC05CBE194B966900E60ACA /* DDEmbeddedDataReader.m */,
-				7BC05CBF194B966900E60ACA /* DDEmbeddedDataReaderMain.m */,
+				7BAA58EF194C9E4200FE247C /* QLTool.xcodeproj */,
+				7B0FE555194FC28D00805775 /* Embedding Data */,
 				7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */,
 				7BC05C48194B091800E60ACA /* atozio.h */,
+				7BAA58F8194C9E9600FE247C /* README.md */,
 				7BC05C49194B091800E60ACA /* atozio.m */,
-				7BC05C46194B091800E60ACA /* Supporting Files */,
 			);
 			path = atozio;
-			sourceTree = "<group>";
-		};
-		7BC05C46194B091800E60ACA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7BC05C47194B091800E60ACA /* atozio-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		7BC05C56194B091900E60ACA /* atozioTests */ = {
@@ -418,6 +540,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B2E9F8319509CE90075EC79 /* NSNib+XMLBase64.h in Headers */,
 				7BC05C64194B096700E60ACA /* atozio.h in Headers */,
 				7BC05CC0194B966900E60ACA /* DDEmbeddedDataReader.h in Headers */,
 			);
@@ -456,6 +579,24 @@
 			name = nyancat;
 			productName = nyancat;
 			productReference = 7B18919D18A9C5EA00E8A015 /* nyancat */;
+			productType = "com.apple.product-type.tool";
+		};
+		7B5297F61951BC15005203F3 /* atozio_testbed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B5298051951BC16005203F3 /* Build configuration list for PBXNativeTarget "atozio_testbed" */;
+			buildPhases = (
+				7B5297F31951BC15005203F3 /* Sources */,
+				7B5297F41951BC15005203F3 /* Frameworks */,
+				7B5297F51951BC15005203F3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B5298071951BC1F005203F3 /* PBXTargetDependency */,
+			);
+			name = atozio_testbed;
+			productName = atozio_testbed;
+			productReference = 7B5297F71951BC15005203F3 /* atozio_testbed */;
 			productType = "com.apple.product-type.tool";
 		};
 		7BC05C3C194B091800E60ACA /* atozio */ = {
@@ -503,6 +644,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Alex Gray";
 				TargetAttributes = {
+					7B5297F61951BC15005203F3 = {
+						CreatedOnToolsVersion = 6.0;
+					};
 					7BC05C4E194B091800E60ACA = {
 						TestTargetID = 7BC05C3C194B091800E60ACA;
 					};
@@ -523,6 +667,18 @@
 					ProductGroup = 7BC05C99194B40D900E60ACA /* Products */;
 					ProjectRef = 7BC05C98194B40D900E60ACA /* AQOptionParser.xcodeproj */;
 				},
+				{
+					ProductGroup = 7BAA58F0194C9E4200FE247C /* Products */;
+					ProjectRef = 7BAA58EF194C9E4200FE247C /* QLTool.xcodeproj */;
+				},
+				{
+					ProductGroup = 7B0C48A319A93F570046167F /* Products */;
+					ProjectRef = 7B0C48A219A93F570046167F /* regex.xcodeproj */;
+				},
+				{
+					ProductGroup = 7B2E9F6F19509CB10075EC79 /* Products */;
+					ProjectRef = 7B2E9F6E19509CB10075EC79 /* StaticLibraryNibs.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -530,11 +686,54 @@
 				7B18057D18F4AE8800488684 /* curryQtaire */,
 				7BC05C3C194B091800E60ACA /* atozio */,
 				7BC05C4E194B091800E60ACA /* atozioTests */,
+				7B5297F61951BC15005203F3 /* atozio_testbed */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		7B0C48AA19A93F590046167F /* regex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = regex;
+			remoteRef = 7B0C48A919A93F590046167F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B2E9F7A19509CB10075EC79 /* libNibTest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNibTest.a;
+			remoteRef = 7B2E9F7919509CB10075EC79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B2E9F7C19509CB10075EC79 /* StaticLibraryNibs.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = StaticLibraryNibs.app;
+			remoteRef = 7B2E9F7B19509CB10075EC79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B2E9F7E19509CB10075EC79 /* denibber */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = denibber;
+			remoteRef = 7B2E9F7D19509CB10075EC79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7B2E9F8019509CB10075EC79 /* CLInibber */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CLInibber;
+			remoteRef = 7B2E9F7F19509CB10075EC79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7BAA58F5194C9E4300FE247C /* QLTool.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QLTool.app;
+			remoteRef = 7BAA58F4194C9E4300FE247C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7BC05C9F194B40DA00E60ACA /* AQOptionParser.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -587,10 +786,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7B5297F31951BC15005203F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B5297FA1951BC16005203F3 /* atozio_testbed.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7BC05C39194B091800E60ACA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B2E9F8419509CE90075EC79 /* NSNib+XMLBase64.m in Sources */,
 				7BC05CC1194B966900E60ACA /* DDEmbeddedDataReader.m in Sources */,
 				7BC05C4A194B091800E60ACA /* atozio.m in Sources */,
 			);
@@ -607,6 +815,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7B5298071951BC1F005203F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BC05C3C194B091800E60ACA /* atozio */;
+			targetProxy = 7B5298061951BC1F005203F3 /* PBXContainerItemProxy */;
+		};
 		7BC05C54194B091900E60ACA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7BC05C3C194B091800E60ACA /* atozio */;
@@ -765,6 +978,69 @@
 					"-framework",
 					Foundation,
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		7B5297FB1951BC16005203F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7B5297FC1951BC16005203F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -955,6 +1231,15 @@
 			buildConfigurations = (
 				7B1891AC18A9C5EA00E8A015 /* Debug */,
 				7B1891AD18A9C5EA00E8A015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B5298051951BC16005203F3 /* Build configuration list for PBXNativeTarget "atozio_testbed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B5297FB1951BC16005203F3 /* Debug */,
+				7B5297FC1951BC16005203F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
